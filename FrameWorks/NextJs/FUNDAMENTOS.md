@@ -35,3 +35,14 @@ Antes de começarmos, vamos entender o contexto de como funcionavam as aplicaç�
 O resultado? Uma aplicação rápida, eficiente e preparada pra receber milhões (ou bilhões) de acessos com tranquilidade.
 
 ## Criando projeto com Next.js
+
+- https://nextjs.org/docs
+- Criar app: npx create-next-app@latest
+
+## Criando rotas da aplicação
+
+-
+
+## Sobre o Next.js
+
+- o arquivo /pages/index.tsx -> sempre vai ser o home
