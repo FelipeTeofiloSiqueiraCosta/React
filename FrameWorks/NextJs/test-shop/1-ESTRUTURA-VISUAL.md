@@ -78,3 +78,8 @@
   ```
   Dentro do header
 - Veja a doc, se necessário: https://stitches.dev/docs/server-side-rendering
+
+# Estilos globais
+
+- https://stitches.dev/docs/styling
+-
