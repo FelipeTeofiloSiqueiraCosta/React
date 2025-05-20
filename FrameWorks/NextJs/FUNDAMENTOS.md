@@ -41,7 +41,26 @@ O resultado? Uma aplicação rápida, eficiente e preparada pra receber milhões
 
 ## Criando rotas da aplicação
 
--
+### Rotas normais
+
+- Para criar uma rota, é só criar um arquivo chamado "product.tsx" ou uma pasta: "product/index.tsx" e exportar ele como default
+  - Exemplo:
+    ```tsx
+    export default function Product() {
+      return <>Home</>;
+    }
+    ```
+
+### Rotas com parâmetros
+
+- Para criar uma rota, é só criar um arquivo chamado "[id].tsx" ou uma pasta: "product/[id].tsx" e exportar ele como default
+  - Exemplo:
+    ```tsx
+    export default function Product() {
+      const router = useRouter();
+      return <p>Post: {router.query.id}</p>;
+    }
+    ```
 
 ## Sobre o Next.js
 
