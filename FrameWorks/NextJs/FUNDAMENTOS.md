@@ -62,6 +62,27 @@ O resultado? Uma aplicação rápida, eficiente e preparada pra receber milhões
     }
     ```
 
+## Configurando documento HTML
+
+- no next.js não temos uma arquivo .html, como temos em outras aplicações, portanto, caso queira alterar o html você tem que criar um arquivo \_document.tsx na raiz do projeto
+- Exemplo:
+
+  ```tsx
+  import { Html, Head, Main, NextScript } from "next/document";
+
+  export default function Document() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body className="antialiased">
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+  ```
+
 ## Sobre o Next.js
 
 - o arquivo /pages/index.tsx -> sempre vai ser o home
