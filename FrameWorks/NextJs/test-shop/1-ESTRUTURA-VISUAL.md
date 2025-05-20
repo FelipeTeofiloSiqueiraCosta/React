@@ -83,3 +83,30 @@
 
 - https://stitches.dev/docs/styling
 -
+
+# Imagens no Next.js
+
+- https://nextjs.org/docs/app/getting-started/images
+- Se eu tiver uma imagem grande (sla 1080x1080) mas eu estiver apresentando ela no meu site apenas no tamanho 100 x 100, porque eu estou usando essa imagem grande? Isso acabaria pesando meu site mais doque deveria, ou sela, se eu tenho uma imagem .png sem transparência, isso pode causar processamento ou uso de recursos desnecessário comparado a um .jpg.
+- O next ele tem um sistema que otimiza isso automaticamente para nós, ou seja, se eu tiver uma imagem grande (1080 x 1080) mas estiver usando só (100 x 100), oque o nexte vai fazer é criar uma versão 100x100 para otimizar, ele consegue criar imagem responsiva e etc.
+- Se qusier fazer o teste:
+
+  - Pegue uma imagem grande e coloque na pasta assets
+  - Então coloque essa imagem no \_app.tsx, exmeplo:
+
+    ```tsx
+    import type { AppProps } from "next/app";
+    import imageGrande from "../assets/imageGrande.png";
+    import Image from "next/image";
+
+    export default function App({ Component, pageProps }: AppProps) {
+      return (
+        <div>
+          <Image src={imageGrande} alt="logo" width={400} />
+          <Component {...pageProps} />
+        </div>
+      );
+    }
+    ```
+
+  - Agora quando você for no navegador, abra a network e procure por imageGrande, você vai ver que o tamanho em KB mudou, e possivelmente o tipo da imagem mudou tbm
