@@ -114,3 +114,7 @@
 # Estrutura da home
 
 - veja o commit: feat: home structure
+
+# Criando o carrossel
+
+- veja o commit: feat: creating carrossel
