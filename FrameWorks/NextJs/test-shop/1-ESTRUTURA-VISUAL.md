@@ -113,8 +113,12 @@
 
 # Estrutura da home
 
-- veja o commit: feat: home structure
+## Commit
+
+- Veja o commit: feat: home structure (https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/29a6c49251f6009d7ce032c17db50cfe3159f4ea)
 
 # Criando o carrossel
 
-- veja o commit: feat: creating carrossel
+## Commit
+
+- Veja o commit: feat: creating carrossel (https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/967fbf95c96c620c186216e4e955cb162b020400)

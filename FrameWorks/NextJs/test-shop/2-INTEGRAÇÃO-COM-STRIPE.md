@@ -2,4 +2,54 @@
 
 - Após criar os produtos vá em Developers (opção na barra lateral)
 - Pegar as chaves e colar na .env.local
-- Veja o commit: feat: stripe setup
+
+## Commit
+
+- Veja o commit: feat: stripe setup (https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/a87448140a0e9799dc9a8d861f8e0eb9d433ec4f)
+
+# Data Fetching no Next.js
+
+- Quando os crawlers e bots do google entram no seu site, eles não esperam a página carregar os dados vindos de uma API, por exemplo, da API do stripe, ele não esperaria os produtos da stripe carregar, sendoa assim isso poderia causar um problema de indexação.
+- Porém no next existe uma forma de você fazer com que ao ser acessada uma página, o bot/cliente vai bater no servidor node.js do next.js vai fazer a requisição para a API pegando o conteudo do seu site (o html), vai fazer a requisição para a API do stripe, construir tudo e retornar.
+- Veja: https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props, caso necessário
+- essa função se chama: getServerSideProps
+
+  - exemplo:
+
+    ```tsx
+    import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+
+    type Repo = {
+      name: string;
+      stargazers_count: number;
+    };
+
+    export const getServerSideProps = (async () => {
+      // Fetch data from external API
+      const res = await fetch("https://api.github.com/repos/vercel/next.js");
+      const repo: Repo = await res.json();
+      // Pass data to the page via props
+      return { props: { repo } };
+    }) satisfies GetServerSideProps<{ repo: Repo }>;
+
+    export default function Page({
+      repo,
+    }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+      return (
+        <main>
+          <p>{repo.stargazers_count}</p>
+        </main>
+      );
+    }
+    ```
+
+    - Perceba que mesmo com o js do navegador desabilitado, os dados da requisição irão ser pegos e apresentados
+    - Mas tome cuidado, pois de a requisição for demorada (durou 5 minutos), a sua página não será carregada até que a requisição tenha sido completada
+
+## Quando usar essa forma de request
+
+- Procure usar essa requisição por server-sede sempre que for de extrema necessidade que uma requisição seja feita, exemplo, no nosso caso, na página home pode ser muito necessário que os produtos ja estejam apresentados quando a página carregar para que os Bots saibam doque se trata (mas só na pagina home por exemplo)
+
+## Commit
+
+- feat: data fetching in next.js (getServerSideProps)
