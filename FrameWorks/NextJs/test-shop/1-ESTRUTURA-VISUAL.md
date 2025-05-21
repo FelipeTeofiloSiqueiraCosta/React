@@ -110,3 +110,7 @@
     ```
 
   - Agora quando você for no navegador, abra a network e procure por imageGrande, você vai ver que o tamanho em KB mudou, e possivelmente o tipo da imagem mudou tbm
+
+# Estrutura da home
+
+- veja o commit: feat: home structure
