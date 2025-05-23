@@ -52,4 +52,27 @@
 
 ## Commit
 
-- feat: data fetching in next.js (getServerSideProps)
+- feat: data fetching in next.js (getServerSideProps) https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/7f024764380793f1fcd44f38cb12a74c6c297317
+
+# Buscando produtos do Stripe (https://docs.stripe.com/api?lang=node)
+
+- No caso da stripe, como ele libera 2 chaves, uma pública e outra secreta, por mais que a publica possa ser vista, ela não pode fazer request para pegar produtos, forçando agente usar a chave secreta, nesse caso então é interessante as requisições serem feitas pelo lado do servidor do next.js e não pelo lado do cliente, para esconder essa chave secreta que será usada.
+
+## Instalando lib do Stripe
+
+- npm install --save stripe
+  - Exemplo:
+    ```tsx
+    <Image
+      src={product.imageUrl}
+      alt={product.name}
+      placeholder="blur"
+      blurDataURL={product.imageUrl}
+      width={520}
+      height={480}
+    />
+    ```
+
+## Commit
+
+- feat: fetching strip products
