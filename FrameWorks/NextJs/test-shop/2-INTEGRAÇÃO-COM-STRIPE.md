@@ -114,10 +114,10 @@
 
 ## Commit
 
-- feat: using SSG
+- feat: using SSG (https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/e20f324a70a18f56c254643db5c07d036c179698)
 
 # Formatando o preço
 
 ## Commit
 
-- feat: formatting price
+- feat: formatting price (https://github.com/FelipeTeofiloSiqueiraCosta/React/commit/6e2717705c7dfc335060d6bc48cedeab50558732)
