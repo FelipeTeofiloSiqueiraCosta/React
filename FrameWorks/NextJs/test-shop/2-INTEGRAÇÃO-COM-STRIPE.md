@@ -76,3 +76,42 @@
 ## Commit
 
 - feat: fetching strip products
+
+# Usando SSG
+
+- importante saber: Quando estou em ambiente de desenvolvimento, o next trata o getStaticProps exatamente como um getServerSideProps
+- Exemplo de uso
+
+  ```ts
+  export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+    const response = await stripe.products.list({
+      expand: ["data.default_price"],
+    });
+
+    const products = response.data.map((product) => {
+      const price = product.default_price as Stripe.Price;
+      return {
+        id: product.id,
+        name: product.name,
+        price: price.unit_amount ? price.unit_amount / 100 : 0,
+        imageUrl: product.images[0],
+      };
+    });
+
+    return {
+      props: {
+        products,
+      },
+    };
+  };
+  ```
+
+- Uma coisa interessante de saber sobre o getStaticProps é que ele não tem um contexto de requisição, diferentemente do getServerSideProps.
+- O getServerSideProps sempre executa quando carregamos a página, oque permite que o next consiga pegar o contexto da requisição (receber o parametro de requisicão e resposta na função), já o getStaticProps não consegue porque ele só é executado no momento que o next faz o cache.
+- Toda pagina renderizada com SSG é cacheada, no momento do build o next gera várias páginas estáticas que podem ter uma duração no cache
+- Exemplo
+  - Quando você roda: npm run build, o next vai em todas as páginas que tem getStaticProps e gera uma versão estática
+
+## Commit
+
+- feat: using SSG
