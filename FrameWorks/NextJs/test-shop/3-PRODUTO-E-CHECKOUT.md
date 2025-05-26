@@ -33,3 +33,11 @@
 ## Commit
 
 - feat: navigate by link
+
+# Estrutura da página de produto
+
+-
+
+# Commit
+
+- feat: product page structure
