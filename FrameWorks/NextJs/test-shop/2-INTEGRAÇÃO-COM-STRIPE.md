@@ -115,3 +115,9 @@
 ## Commit
 
 - feat: using SSG
+
+# Formatando o preço
+
+## Commit
+
+- feat: formatting price
