@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       }).format(price.unit_amount ? price.unit_amount / 100 : 0),
     };
   });
-  console.log(products);
+
   return {
     props: {
       products,

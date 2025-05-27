@@ -38,6 +38,17 @@
 
 -
 
-# Commit
+## Commit
 
 - feat: product page structure
+
+# Carregando dados do produto
+
+- Se a nossa página:
+  1. Não depende de dados do contexto atual (cookies, usuário autenticado e etc)
+  2. Não tem problema essa página ficar salva em cache por um tempo
+  - Então use o SSG (getStaticProps)
+
+## Commit
+
+- feat: loading product data
