@@ -52,3 +52,32 @@
 ## Commit
 
 - feat: loading product data
+
+# SSG com parâmetro dinâmico
+
+- Toda vez que eu eu tiver uma rota dinâmica ([id].tsx), e eu querer usar ssg eu tenho que ter um cara chamado getStaticPaths
+- Exemplo:
+
+  ```tsx
+  export const getStaticPaths = (async () => {
+    const response = await stripe.products.list();
+    const products = response.data;
+
+    const paths = products.map((product) => {
+      return {
+        params: { id: product.id },
+      };
+    });
+    return {
+      paths,
+      fallback: true, // false or "blocking"
+    };
+  }) satisfies GetStaticPaths;
+  ```
+
+- Mas tome cuidado com essa forma, pois se voce colocar todos os paths (parametros) ou produtos, o build vai ficar muito lento se você tiver 20k de produtos por exemplo
+-
+
+## Commit
+
+- feat: ssg with dinamic param
