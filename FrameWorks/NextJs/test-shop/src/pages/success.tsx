@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Success() {
+export default function SuccessCheckout() {
   return <>success</>;
 }

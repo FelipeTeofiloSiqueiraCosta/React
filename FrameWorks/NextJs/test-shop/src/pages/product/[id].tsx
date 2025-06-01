@@ -16,6 +16,7 @@ interface ProductProps {
     description: string;
     imageUrl: string;
     price: string;
+    priceId: string;
   };
 }
 
@@ -24,6 +25,18 @@ export default function Product({ product }: ProductProps) {
 
   if (isFallback) {
     return <p>Loading...</p>;
+  }
+
+  async function handleBuyProduct() {
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      body: JSON.stringify({ priceId: product.priceId }),
+    });
+
+    const { checkoutUrl } = await response.json();
+    // clique nesse link quando ele aparecer e faz o teste
+    console.log({ checkoutUrl });
+    // window.location.href = checkoutUrl;
   }
 
   return (
@@ -40,7 +53,7 @@ export default function Product({ product }: ProductProps) {
         <h1>{product.name}</h1>
         <span>{product.price}</span>
         <p>{product.description}</p>
-        <button>Comprar agora</button>
+        <button onClick={handleBuyProduct}>Comprar agora</button>
       </ProductDetails>
     </ProductContainer>
   );
@@ -89,6 +102,7 @@ export const getStaticProps: GetStaticProps<
       style: "currency",
       currency: "BRL",
     }).format(price.unit_amount ? price.unit_amount / 100 : 0),
+    priceId: price.id,
   };
 
   return {

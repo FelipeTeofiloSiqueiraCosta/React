@@ -156,3 +156,12 @@
 ## Commit
 
 - feat: next api routes
+
+# Checkout no Stripe
+
+- https://docs.stripe.com/api/checkout/sessions
+- O stripe usa o checkout session para o usuário fazer uma compra
+
+## Commit
+
+- feat: add stripe checkout
