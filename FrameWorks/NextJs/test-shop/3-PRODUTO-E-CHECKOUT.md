@@ -165,3 +165,11 @@
 ## Commit
 
 - feat: add stripe checkout
+
+# Botão de comprar
+
+-
+
+## Commit
+
+- feat: buy button

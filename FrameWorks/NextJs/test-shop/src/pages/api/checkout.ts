@@ -5,9 +5,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   const NEXT_URL = process.env.NEXT_URL;
 
-  const priceId = JSON.parse(req.body).priceId;
+  const { priceId } = req.body;
+
+  if (!priceId) {
+    return res.status(400).json({ error: "Price not found" });
+  }
 
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "payment",
