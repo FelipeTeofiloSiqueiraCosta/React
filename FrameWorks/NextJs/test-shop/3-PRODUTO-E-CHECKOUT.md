@@ -131,3 +131,28 @@
 ## Commit
 
 - refactor: prefetch de links
+
+# API routes no Next.js
+
+- O servidor node.js do next.js permite criar rotas
+- Para criar uma rota com next.js
+
+  - Crie uma pasta chamada api
+  - Crie um arquivo com o nome da rota que você quer dar
+  - Coloque isso la dentro:
+
+    ```ts
+    import { NextApiRequest, NextApiResponse } from "next";
+
+    export default function handler(req: NextApiRequest, res: NextApiResponse) {
+      res.status(200).json({ message: "Hello, world!" });
+    }
+    ```
+
+  - Basta acessar esse link agora: http://localhost:3000/api/hello
+
+-
+
+## Commit
+
+- feat: next api routes
