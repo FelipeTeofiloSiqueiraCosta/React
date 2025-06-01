@@ -181,3 +181,11 @@
 ## Commit
 
 - feat: success page structure
+
+# Dados da compra na página de Sucesso
+
+-
+
+## Commit
+
+- feat: add payment data in success page
