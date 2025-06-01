@@ -173,3 +173,11 @@
 ## Commit
 
 - feat: buy button
+
+# Página de Sucesso
+
+-
+
+## Commit
+
+- feat: success page structure
