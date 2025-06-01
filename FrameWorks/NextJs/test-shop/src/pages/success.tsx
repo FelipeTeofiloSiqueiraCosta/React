@@ -1,23 +1,15 @@
 import React from "react";
 import { ImageContainer, SuccessContainer } from "../styles/pages/success";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { stripe } from "../lib/stripe";
 import Image from "next/image";
 import Stripe from "stripe";
 
-interface SuccessCheckoutProps {
-  customerName: string;
-  product: {
-    name: string;
-    imageUrl: string;
-  };
-}
-
 export default function SuccessCheckout({
   customerName,
   product,
-}: SuccessCheckoutProps) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <SuccessContainer>
       <h1>Compra efetuada</h1>
@@ -40,12 +32,21 @@ export default function SuccessCheckout({
   );
 }
 
-export const getServerSideProps: GetServerSideProps<
-  SuccessCheckoutProps
-> = async ({ query }) => {
-  const sessionId = String(query.session_id);
+export const getServerSideProps = async ({
+  query,
+}: GetServerSidePropsContext) => {
+  const sessionId = query.session_id;
 
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+  if (!sessionId) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  const session = await stripe.checkout.sessions.retrieve(String(sessionId), {
     expand: ["line_items", "line_items.data.price.product"],
   });
 

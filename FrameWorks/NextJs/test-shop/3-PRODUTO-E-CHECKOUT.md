@@ -189,3 +189,11 @@
 ## Commit
 
 - feat: add payment data in success page
+
+# Redirect no SSR
+
+-
+
+## Commit
+
+- feat: SSR redirect
