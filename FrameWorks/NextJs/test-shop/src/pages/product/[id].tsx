@@ -6,6 +6,7 @@ import {
   ProductDetails,
 } from "@/src/styles/pages/product";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -51,24 +52,32 @@ export default function Product({ product }: ProductProps) {
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image
-          src={product.imageUrl}
-          alt={"Camiseta X"}
-          width={520}
-          height={480}
-        />
-      </ImageContainer>
-      <ProductDetails>
-        <h1>{product.name}</h1>
-        <span>{product.price}</span>
-        <p>{product.description}</p>
-        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSessio}>
-          {isCreatingCheckoutSessio ? "Carregando..." : "Comprar agora"}
-        </button>
-      </ProductDetails>
-    </ProductContainer>
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
+      <ProductContainer>
+        <ImageContainer>
+          <Image
+            src={product.imageUrl}
+            alt={"Camiseta X"}
+            width={520}
+            height={480}
+          />
+        </ImageContainer>
+        <ProductDetails>
+          <h1>{product.name}</h1>
+          <span>{product.price}</span>
+          <p>{product.description}</p>
+          <button
+            onClick={handleBuyProduct}
+            disabled={isCreatingCheckoutSessio}
+          >
+            {isCreatingCheckoutSessio ? "Carregando..." : "Comprar agora"}
+          </button>
+        </ProductDetails>
+      </ProductContainer>
+    </>
   );
 }
 

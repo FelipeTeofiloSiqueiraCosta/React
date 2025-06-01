@@ -197,3 +197,34 @@
 ## Commit
 
 - feat: SSR redirect
+
+# Trabalhando com SEO
+
+- Search Engine Optimization
+- Pra que serve?
+
+  - Fazer com que o seu site apareça bem posicionado quando alguém busca algo no Google, Bing, etc.
+  - É melhorar o site para que o Google entenda o que ele oferece e ache que vale a pena mostrar ele primeiro pros usuários.
+
+- O que ajuda no SEO?
+
+  - Bons títulos (tags `<title>`).
+  - Descrições claras.
+  - URLs amigáveis (/produtos/tenis).
+  - Imagens otimizadas.
+  - Site rápido.
+  - Mobile-friendly (funciona no celular).
+  - Links internos e externos.
+
+- Adicionando Head
+  - Quando agente adiciona o head do next (import Head from "next/head";), tudo que estiver dentro dele vai ser substituido no head do \_document.tsx
+  ```tsx
+  <Head>
+    <title>Home | Ignite Shop</title>
+  </Head>
+  ```
+  - tem uma lib muito boa que se chama next-seo: https://github.com/garmeeh/next-seo
+
+## Commit
+
+- feat: SEO
