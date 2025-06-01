@@ -119,3 +119,15 @@
 ## Commit
 
 - feat: ssg fallback
+
+# Prefetch de links
+
+- Usando o next nós temos que tomar alguns cuidados porque ele pode fazer alguns prefetch em links, oque isso quer dizer?
+  - Toda vez que usamos o Link do next (import Link from "next/link";), ele faz um prefetch dessa página pra abrir ela mas rápido quando o usuário clicar clicar
+  - Se você abrir a aba network no inspecionar e procurar por prod\_, voce vai ver que ele fez uma requisicao para cada link renderizado em tela, isso acontece quando voce passa o mouse em cima do link tbm
+- nesse caso podemos passar uma propriedade como: prefetch=false
+- Importante: rode isso em produção para testar
+
+## Commit
+
+- refactor: prefetch de links
