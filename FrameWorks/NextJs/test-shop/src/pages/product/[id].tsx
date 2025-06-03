@@ -1,4 +1,3 @@
-import { api } from "@/src/lib/axios";
 import { stripe } from "@/src/lib/stripe";
 import {
   ImageContainer,
@@ -11,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Stripe from "stripe";
+import { useShoppingCart } from "use-shopping-cart";
 
 interface ProductProps {
   product: {
@@ -19,34 +19,45 @@ interface ProductProps {
     description: string;
     imageUrl: string;
     price: string;
+    price_unit_amount: number;
     priceId: string;
   };
 }
 
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
-  const [isCreatingCheckoutSessio, setIsCreatingCheckoutSessio] =
-    useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const { addItem } = useShoppingCart();
 
   if (isFallback) {
     return <p>Loading...</p>;
   }
 
-  async function handleBuyProduct() {
+  async function handleAddToCart() {
     try {
-      setIsCreatingCheckoutSessio(true);
+      setIsAddingToCart(true);
 
-      const response = await api.post("/api/checkout", {
-        priceId: product.priceId,
+      addItem({
+        currency: "BRL",
+        id: product.id,
+        name: product.name,
+        price: product.price_unit_amount,
+        image: product.imageUrl,
+        price_id: product.priceId,
       });
 
-      const { checkoutUrl } = response.data;
+      // const response = await api.post("/api/checkout", {
+      //   priceId: product.priceId,
+      // });
 
-      window.location.href = checkoutUrl;
+      // const { checkoutUrl } = response.data;
+
+      // window.location.href = checkoutUrl;
+      setIsAddingToCart(false);
     } catch (error) {
       // conectar com uma ferramenta de monitoramento de erros como o Sentry ou Datadog
       console.log(error);
-      setIsCreatingCheckoutSessio(false);
+      setIsAddingToCart(false);
       alert("Falha ao redirecionar ao checkout");
     }
   }
@@ -69,11 +80,8 @@ export default function Product({ product }: ProductProps) {
           <h1>{product.name}</h1>
           <span>{product.price}</span>
           <p>{product.description}</p>
-          <button
-            onClick={handleBuyProduct}
-            disabled={isCreatingCheckoutSessio}
-          >
-            {isCreatingCheckoutSessio ? "Carregando..." : "Comprar agora"}
+          <button onClick={handleAddToCart} disabled={isAddingToCart}>
+            {isAddingToCart ? "Carregando..." : "Colocar na sacola"}
           </button>
         </ProductDetails>
       </ProductContainer>
@@ -124,6 +132,7 @@ export const getStaticProps: GetStaticProps<
       style: "currency",
       currency: "BRL",
     }).format(price.unit_amount ? price.unit_amount / 100 : 0),
+    price_unit_amount: price.unit_amount ?? 0,
     priceId: price.id,
   };
 

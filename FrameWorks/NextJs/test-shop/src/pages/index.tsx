@@ -6,6 +6,7 @@ import { stripe } from "../lib/stripe";
 import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
+import { Handbag } from "../ui/handbag";
 
 interface HomeProps {
   products: {
@@ -54,8 +55,12 @@ export default function Home({ products }: HomeProps) {
                   height={480}
                 />
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <br />
+                    <span>{product.price}</span>
+                  </div>
+                  <Handbag color="green" />
                 </footer>
               </Product>
             </Link>
