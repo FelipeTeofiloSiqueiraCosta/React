@@ -8,6 +8,14 @@ export const SuccessContainer = styled("main", {
   height: 656,
   margin: "0 auto",
 
+  ".products-container": {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "-3rem",
+    marginBottom: "3rem",
+  },
+
   h1: {
     fontSize: "$2xl",
     color: "$gray100",
@@ -41,12 +49,13 @@ export const ImageContainer = styled("div", {
   maxWidth: 130,
   height: 145,
   background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
-  borderRadius: 8,
+  borderRadius: "50%",
   padding: "0.25rem",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginTop: "4rem",
+
+  boxShadow: "0 0 60px rgba(0, 0, 0, 0.8)",
 
   img: {
     objectFit: "cover",
