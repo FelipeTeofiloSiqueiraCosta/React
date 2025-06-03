@@ -7,6 +7,7 @@ import {
 import Image from "next/image";
 import closeIcon from "../assets/close.svg";
 import { useShoppingCart } from "use-shopping-cart";
+import { api } from "../lib/axios";
 
 export function ShoppingBagSidebar() {
   const {
@@ -19,6 +20,21 @@ export function ShoppingBagSidebar() {
   } = useShoppingCart();
 
   const cartItems = Object.values(cartDetails || {});
+
+  async function handleCheckout() {
+    const lineItems = cartItems.map((item) => ({
+      price: item.price_id,
+      quantity: item.quantity,
+    }));
+
+    const response = await api.post("/api/checkout", {
+      lineItems,
+    });
+
+    const { checkoutUrl } = response.data;
+
+    window.location.href = checkoutUrl;
+  }
 
   return (
     <ShoppingBagSidebarContainer isOpen={shouldDisplayCart}>
@@ -69,7 +85,9 @@ export function ShoppingBagSidebar() {
             }).format(Number(totalPrice) / 100)}
           </strong>
         </div>
-        <button disabled={cartCount === 0}>Finalizar compra</button>
+        <button disabled={cartCount === 0} onClick={handleCheckout}>
+          Finalizar compra
+        </button>
       </footer>
     </ShoppingBagSidebarContainer>
   );

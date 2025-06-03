@@ -7,9 +7,11 @@ import "keen-slider/keen-slider.min.css";
 import { CartProvider } from "use-shopping-cart";
 import { Handbag } from "../ui/handbag";
 import { ShoppingBagSidebar } from "../ui/shoppingBagSidebar";
+import { useRouter } from "next/navigation";
 
 globalStyles();
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   return (
     <CartProvider
       mode="payment"
@@ -23,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <Container>
         <Header>
-          <Image src={logoImage} alt="logo" />
+          <Image src={logoImage} alt="logo" onClick={() => router.push("/")} />
           <Handbag />
         </Header>
         <ShoppingBagSidebar />

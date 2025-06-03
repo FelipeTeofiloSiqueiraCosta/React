@@ -11,20 +11,15 @@ export default async function handler(
 
   const NEXT_URL = process.env.NEXT_URL;
 
-  const { priceId } = req.body;
+  const { lineItems } = req.body;
 
-  if (!priceId) {
-    return res.status(400).json({ error: "Price not found" });
+  if (!lineItems || lineItems.length === 0) {
+    return res.status(400).json({ error: "No Items in the cart" });
   }
 
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "payment",
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
+    line_items: lineItems,
     success_url: `${NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${NEXT_URL}/cancel`,
   });

@@ -38,21 +38,14 @@ export default function Product({ product }: ProductProps) {
       setIsAddingToCart(true);
 
       addItem({
-        currency: "BRL",
         id: product.id,
         name: product.name,
+        price_id: product.priceId,
         price: product.price_unit_amount,
         image: product.imageUrl,
-        price_id: product.priceId,
+        currency: "BRL",
       });
 
-      // const response = await api.post("/api/checkout", {
-      //   priceId: product.priceId,
-      // });
-
-      // const { checkoutUrl } = response.data;
-
-      // window.location.href = checkoutUrl;
       setIsAddingToCart(false);
     } catch (error) {
       // conectar com uma ferramenta de monitoramento de erros como o Sentry ou Datadog
