@@ -9,11 +9,16 @@ export const SuccessContainer = styled("main", {
   margin: "0 auto",
 
   ".products-container": {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "-3rem",
+    display: "grid",
+    placeItems: "center",
     marginBottom: "3rem",
+    width: "100%",
+
+    ul: {
+      display: "flex",
+      listStyle: "none",
+      justifyContent: "space-between",
+    },
   },
 
   h1: {
@@ -44,8 +49,7 @@ export const SuccessContainer = styled("main", {
   },
 });
 
-export const ImageContainer = styled("div", {
-  width: "100%",
+export const ImageContainer = styled("li", {
   maxWidth: 130,
   height: 145,
   background: "linear-gradient(180deg, #1ea483 0%, #7465d4 100%)",
@@ -54,6 +58,12 @@ export const ImageContainer = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  position: "relative",
+
+  "&:hover": {
+    transform: "scale(1.1)",
+    zIndex: 1,
+  },
 
   boxShadow: "0 0 60px rgba(0, 0, 0, 0.8)",
 

@@ -11,6 +11,7 @@ export default function SuccessCheckout({
   customerName,
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const totalWidth = products.length * 128 - (products.length - 1) * 64;
   return (
     <>
       <Head>
@@ -20,16 +21,24 @@ export default function SuccessCheckout({
       </Head>
       <SuccessContainer>
         <div className="products-container">
-          {products.map((product) => (
-            <ImageContainer key={product.name}>
-              <Image
-                src={product.imageUrl}
-                width={120}
-                height={110}
-                alt={product.name}
-              />
-            </ImageContainer>
-          ))}
+          <ul style={{ width: `${totalWidth}px` }}>
+            {products.map((product, i) => {
+              const offset = i * 64;
+              return (
+                <ImageContainer
+                  key={product.name}
+                  style={{ left: `-${offset}px` }}
+                >
+                  <Image
+                    src={product.imageUrl}
+                    width={120}
+                    height={110}
+                    alt={product.name}
+                  />
+                </ImageContainer>
+              );
+            })}
+          </ul>
         </div>
         <h1>Compra efetuada</h1>
 
