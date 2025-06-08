@@ -14,13 +14,13 @@ export const Hero = styled('div', {
   padding: '0 $10',
 
   // usando dessa forma, você consegue estilizar o heading e o text de forma mais específica, sem precisar ficar estilizando h1 por exemplo
-  [`${Heading}`]: {
+  [`> ${Heading}`]: {
     '@media(max-width: 600px)': {
       fontSize: '$6xl',
     },
   },
 
-  [`${Text}`]: {
+  [`> ${Text}`]: {
     marginTop: '$2',
     color: '$gray200',
   },
