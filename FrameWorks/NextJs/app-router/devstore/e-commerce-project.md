@@ -22,3 +22,11 @@
 ## Commit
 
 - feat: creating app layout
+
+# Componente Header
+
+- npm i lucide-react
+
+## Commit
+
+- feat: add header component
