@@ -5,3 +5,12 @@
 ## Commit
 
 - feat: project structure
+
+# Configurando Favicon
+
+- Só de eu adicionar um arquivo .png chamado: icon.png dentro do meu app folder ele ja percebe que é um favicon
+-
+
+# Commit
+
+- feat: favicon configuration
