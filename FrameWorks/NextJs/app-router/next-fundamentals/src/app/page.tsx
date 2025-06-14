@@ -1,10 +1,14 @@
+import { Suspense } from 'react'
+import { GithubProfile } from './components/github-profile'
+
 export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
-
-  const response = await fetch(
-    'https://api.github.com/users/felipeteofilosiqueiracosta',
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Descrição da home e outros componentes</p>
+      <Suspense fallback={<h1>Carregando perfil do github...</h1>}>
+        <GithubProfile />
+      </Suspense>
+    </div>
   )
-  const user = await response.json()
-
-  return <pre>{JSON.stringify(user, null, 2)}</pre>
 }
