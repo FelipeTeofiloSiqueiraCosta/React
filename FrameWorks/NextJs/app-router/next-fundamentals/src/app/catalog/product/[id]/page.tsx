@@ -1,6 +1,20 @@
-'use client'
+import { AddToCartButton } from './add-to-cart-button'
 
-export default function Product({ params }: { params: { id: string } }) {
-  console.log('test')
-  return <>prod: {params.id}</>
+export default async function Product({ params }: { params: { id: string } }) {
+  // agora você pode fazer um fetch aqui
+  const { product } = await new Promise<{
+    product: { name: string; qte: number }
+  }>((resolve) =>
+    setTimeout(() => resolve({ product: { name: 'camiseta', qte: 2 } }), 2000),
+  )
+
+  return (
+    <div>
+      <p>{params.id}</p>
+      <p>{product.name}</p>
+      <p>{product.qte}</p>
+      <br />
+      <AddToCartButton />
+    </div>
+  )
 }
