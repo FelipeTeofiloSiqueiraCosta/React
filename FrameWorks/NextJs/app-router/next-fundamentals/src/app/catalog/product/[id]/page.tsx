@@ -1,4 +1,5 @@
 import { AddToCartButton } from './add-to-cart-button'
+import { TestClient } from './test'
 
 export default async function Product({ params }: { params: { id: string } }) {
   // agora você pode fazer um fetch aqui
@@ -14,7 +15,9 @@ export default async function Product({ params }: { params: { id: string } }) {
       <p>{product.name}</p>
       <p>{product.qte}</p>
       <br />
-      <AddToCartButton />
+      <AddToCartButton>
+        <TestClient />
+      </AddToCartButton>
     </div>
   )
 }
