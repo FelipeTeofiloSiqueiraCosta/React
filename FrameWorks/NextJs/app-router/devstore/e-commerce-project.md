@@ -11,6 +11,14 @@
 - Só de eu adicionar um arquivo .png chamado: icon.png dentro do meu app folder ele ja percebe que é um favicon
 -
 
-# Commit
+## Commit
 
 - feat: favicon configuration
+
+# Criando layout da aplicação
+
+-
+
+## Commit
+
+- feat: creating app layout
